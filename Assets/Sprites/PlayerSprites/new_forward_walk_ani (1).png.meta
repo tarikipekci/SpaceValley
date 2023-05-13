@@ -1,0 +1,323 @@
+fileFormatVersion: 2
+guid: 101943dd6bc263648b53a8c5992825d1
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_16
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 75
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58bee31048441a34483e20b02a826f80
+      internalID: 1563431011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_17
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 75
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42053e7b7f7570c44b937b537f34fcfe
+      internalID: 677013536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_18
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 75
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb32406c6eb26e4ea7be13a243a70dd
+      internalID: 1696409325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_19
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 76
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d837b119c31ab44827bce670699713
+      internalID: 1428833970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_20
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 76
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe71be07b4c12ca49a7e63b61cd02b16
+      internalID: 214827180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_21
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 77
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4449da7893c213478fd383da1831f7a
+      internalID: 440494434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 78
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb247f90318acfc40b6598de09ebab45
+      internalID: -631806144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_forward_walk_ani (1)_23
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 79
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5474949a82498004abc0a96cfd245510
+      internalID: 1610869564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      new_forward_walk_ani (1)_0: -210251161
+      new_forward_walk_ani (1)_1: -365278817
+      new_forward_walk_ani (1)_10: -2044460503
+      new_forward_walk_ani (1)_11: -1292392309
+      new_forward_walk_ani (1)_12: 704589828
+      new_forward_walk_ani (1)_13: -1080589049
+      new_forward_walk_ani (1)_14: 1990868768
+      new_forward_walk_ani (1)_15: 1982546097
+      new_forward_walk_ani (1)_16: 1563431011
+      new_forward_walk_ani (1)_17: 677013536
+      new_forward_walk_ani (1)_18: 1696409325
+      new_forward_walk_ani (1)_19: 1428833970
+      new_forward_walk_ani (1)_2: -1109597244
+      new_forward_walk_ani (1)_20: 214827180
+      new_forward_walk_ani (1)_21: 440494434
+      new_forward_walk_ani (1)_22: -631806144
+      new_forward_walk_ani (1)_23: 1610869564
+      new_forward_walk_ani (1)_24: -1809751197
+      new_forward_walk_ani (1)_25: 438479225
+      new_forward_walk_ani (1)_26: -484350502
+      new_forward_walk_ani (1)_27: -428771881
+      new_forward_walk_ani (1)_28: 1037745490
+      new_forward_walk_ani (1)_29: 298305484
+      new_forward_walk_ani (1)_3: 1448124199
+      new_forward_walk_ani (1)_30: 1043517593
+      new_forward_walk_ani (1)_31: 2060045686
+      new_forward_walk_ani (1)_4: 1164586216
+      new_forward_walk_ani (1)_5: 767464787
+      new_forward_walk_ani (1)_6: 125333543
+      new_forward_walk_ani (1)_7: -5717466
+      new_forward_walk_ani (1)_8: -90955107
+      new_forward_walk_ani (1)_9: 24730680
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
