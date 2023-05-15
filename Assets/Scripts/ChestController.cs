@@ -1,3 +1,4 @@
+using System;
 using InventoryScripts;
 using UnityEngine;
 
@@ -11,15 +12,27 @@ public class ChestController : MonoBehaviour
     [SerializeField] private GameObject chestInventory;
     public GameObject mainInventory;
     public InventoryManager inventoryManager;
+    public Transform player;
+    private float distance;
+    [SerializeField] private float maxRange;
 
     private void Awake()
     {
         _chestAnim = GetComponent<Animator>();
         chestInventory.SetActive(false);
     }
+
+    private void Update()
+    {
+        distance = Math.Abs(Vector3.Distance(player.position, transform.position));
+    }
+
     private void OnMouseOver()
     {
-        _chestAnim.SetBool(Outline,true);
+        if (distance <= maxRange)
+        {
+             _chestAnim.SetBool(Outline,true);
+        }
     }
 
     public void OnMouseExit()
@@ -29,7 +42,7 @@ public class ChestController : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (_opened == false)
+        if (_opened == false && distance <= maxRange)
         {
             _opened = true;
             _chestAnim.SetTrigger(Opened);

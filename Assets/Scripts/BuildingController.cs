@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BuildingController : MonoBehaviour
@@ -12,6 +11,7 @@ public class BuildingController : MonoBehaviour
     public bool _canBuild;
     private float gridSize = 0.64f;
     [Header("Classes")] public static BuildingController instance;
+    public BuildingDeskController BuildingDeskController;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class BuildingController : MonoBehaviour
 
             for (var i = 0; i < numHits; i++)
             {
-                if (hits[i].collider.enabled)
+                if (hits[i].collider.enabled && hits[i].collider.tag != "Room")
                 {
                     return true;
                 }
@@ -98,6 +98,7 @@ public class BuildingController : MonoBehaviour
             _spawnItem.transform.position = new Vector2(hitX, hitY);
             _spawnItem.GetComponent<SpriteRenderer>().color = _originalColor;
             _collider2D.isTrigger = false;
+            BuildingDeskController.CloseBuildingDesk();
         }
     }
 }

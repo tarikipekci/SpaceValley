@@ -7,6 +7,7 @@ namespace Player
         [Header("Components")] private Rigidbody2D _rigidbody;
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
+        private RigidbodyConstraints2D _rigidbodyConstraints2D;
 
         [Header("Animation Values")] private static readonly int WalkingX = Animator.StringToHash("walkingX");
         private static readonly int WalkingY = Animator.StringToHash("walkingY");
@@ -29,6 +30,7 @@ namespace Player
             if (!_buildingController.builderMode)
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.None;
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 Walk();
 
                 PlayWalkingAnimation();
@@ -37,7 +39,7 @@ namespace Player
             }
             else
             {
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
                 _animator.SetFloat(WalkingX, 0f);
                 _animator.SetFloat(WalkingY, 0f);
             }
