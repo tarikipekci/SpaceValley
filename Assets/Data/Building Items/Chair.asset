@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98b8f0bd22639148909ca098126895b, type: 3}
+  m_Name: Chair
+  m_EditorClassIdentifier: 
+  buildingItem: {fileID: 6427136523379400722, guid: e08c3362150be8f41a39353e2104e3d8, type: 3}
+  itemName: Chair
+  itemDescription: 
+  image: {fileID: -1120663838, guid: fd2e50164932f0c44aac5cfd11593c31, type: 3}
+  cost: 10

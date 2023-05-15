@@ -15,7 +15,7 @@ public class BuildingDeskController : MonoBehaviour
 
     private void Awake()
     {
-       //buildingPanel.SetActive(false);
+       buildingPanel.SetActive(false);
     }
 
     private void Start()
@@ -59,5 +59,6 @@ public class BuildingDeskController : MonoBehaviour
         _opened = false;
         _buildingDeskAnim.SetTrigger(Closed);
         _buildingDeskAnim.SetBool(Opened, false);
+        buildingPanel.SetActive(false);
     }
 }
