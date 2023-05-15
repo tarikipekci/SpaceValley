@@ -9,7 +9,7 @@ public class BuildingController : MonoBehaviour
     private Color _originalColor;
     private Collider2D _collider2D;
     public bool _canBuild;
-    private float gridSize = 0.64f;
+    private float gridSize = 0.32f;
     [Header("Classes")] public static BuildingController instance;
     public BuildingDeskController BuildingDeskController;
 
@@ -58,13 +58,14 @@ public class BuildingController : MonoBehaviour
                 _spawnItem.GetComponent<SpriteRenderer>().color = Color.red;
             }
 
-            PlaceObject(hitX, hitY);
             IsItAvailableToBuild();
+            PlaceObject(hitX, hitY);
         }
     }
 
     private void CreateBluePrintOfObject(Vector2 worldPos, float hitX, float hitY)
     {
+        Cursor.visible = false;
         if (_showedUp == false)
         {
             _spawnItem = Instantiate(selectedConstruction, worldPos, selectedConstruction.transform.rotation);
@@ -90,7 +91,7 @@ public class BuildingController : MonoBehaviour
         }
     }
 
-    private void PlaceObject(float hitX, float hitY)
+    public void PlaceObject(float hitX, float hitY)
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && _canBuild)
         {
@@ -99,6 +100,8 @@ public class BuildingController : MonoBehaviour
             _spawnItem.GetComponent<SpriteRenderer>().color = _originalColor;
             _collider2D.isTrigger = false;
             BuildingDeskController.CloseBuildingDesk();
+            Cursor.visible = true;
+            _showedUp = false;
         }
     }
 }

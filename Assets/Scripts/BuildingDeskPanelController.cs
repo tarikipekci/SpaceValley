@@ -5,6 +5,7 @@ public class BuildingDeskPanelController : MonoBehaviour
 {
     [SerializeField] private BuildingItem _buildingItem;
     [SerializeField] private Text itemName;
+    [SerializeField] private BuildingController _buildingController;
 
     private void Start()
     {
@@ -16,5 +17,7 @@ public class BuildingDeskPanelController : MonoBehaviour
     public void OnClick()
     {
         Debug.Log(_buildingItem.name);
+        BuildingController.instance.builderMode = true;
+        _buildingController.selectedConstruction = _buildingItem.buildingItem;
     }
 }

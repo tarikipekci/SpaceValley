@@ -32,10 +32,8 @@ public class BuildingDeskController : MonoBehaviour
     {
         if (distance <= maxRange)
         {
-            BuildingController.instance.builderMode = true;
             _opened = true;
             _buildingDeskAnim.SetBool(Opened, _opened);
-            Cursor.visible = false;
             buildingPanel.SetActive(true);
         }
     }
@@ -55,7 +53,6 @@ public class BuildingDeskController : MonoBehaviour
 
     public void CloseBuildingDesk()
     {
-        Cursor.visible = true;
         _opened = false;
         _buildingDeskAnim.SetTrigger(Closed);
         _buildingDeskAnim.SetBool(Opened, false);

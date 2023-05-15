@@ -2185,6 +2185,10 @@ PrefabInstance:
       propertyPath: _buildingItem
       value: 
       objectReference: {fileID: 11400000, guid: 07eadb10569eacc4495ee306c5e9858d, type: 2}
+    - target: {fileID: 935001950469767605, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
+      propertyPath: _buildingController
+      value: 
+      objectReference: {fileID: 17473747}
     - target: {fileID: 935001950469767606, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2821,6 +2825,10 @@ PrefabInstance:
       propertyPath: _buildingItem
       value: 
       objectReference: {fileID: 11400000, guid: c524bc2d14a7f204e8dda4325efee2b4, type: 2}
+    - target: {fileID: 935001950469767605, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
+      propertyPath: _buildingController
+      value: 
+      objectReference: {fileID: 17473747}
     - target: {fileID: 935001950469767606, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3830,6 +3838,10 @@ PrefabInstance:
       propertyPath: _buildingItem
       value: 
       objectReference: {fileID: 11400000, guid: 02684e63f55d1b144bc781366a3745d7, type: 2}
+    - target: {fileID: 935001950469767605, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
+      propertyPath: _buildingController
+      value: 
+      objectReference: {fileID: 17473747}
     - target: {fileID: 935001950469767606, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4309,6 +4321,10 @@ PrefabInstance:
       propertyPath: _buildingItem
       value: 
       objectReference: {fileID: 11400000, guid: 26d0ee4db0aa9834bb7eb3e9d6d06d8d, type: 2}
+    - target: {fileID: 935001950469767605, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
+      propertyPath: _buildingController
+      value: 
+      objectReference: {fileID: 17473747}
     - target: {fileID: 935001950469767606, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4543,6 +4559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingItem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 935001950469767605, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
+      propertyPath: _buildingController
+      value: 
+      objectReference: {fileID: 17473747}
     - target: {fileID: 935001950469767606, guid: 12996d77598ff6b4e820fb0f094e54c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5068,48 +5088,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878519621}
   m_CullTransparentMesh: 1
---- !u!1 &1906776787 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3822030747307518606, guid: 498bd59897e23b648b6e651db0521c36, type: 3}
-  m_PrefabInstance: {fileID: 3822030745401405533}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &1906776792
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906776787}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
-  m_Size: {x: 1, y: 0.0001}
-  m_Direction: 0
---- !u!50 &1906776796
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906776787}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!224 &1926842021 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6643909067303784867, guid: ea8ad3ac9722ddd4d8997c6495b375d7, type: 3}
@@ -6203,18 +6181,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3822030747307518600, guid: 498bd59897e23b648b6e651db0521c36, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3822030747307518600, guid: 498bd59897e23b648b6e651db0521c36, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3822030747307518600, guid: 498bd59897e23b648b6e651db0521c36, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 551721015
-      objectReference: {fileID: 0}
     - target: {fileID: 3822030747307518603, guid: 498bd59897e23b648b6e651db0521c36, type: 3}
       propertyPath: m_RootOrder
       value: 2
