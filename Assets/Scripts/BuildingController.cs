@@ -12,6 +12,7 @@ public class BuildingController : MonoBehaviour
     private float gridSize = 0.32f;
     [Header("Classes")] public static BuildingController instance;
     public BuildingDeskController BuildingDeskController;
+    private Collider2D hitTarget;
 
     private void Awake()
     {
@@ -31,6 +32,10 @@ public class BuildingController : MonoBehaviour
             {
                 if (hits[i].collider.enabled && hits[i].collider.tag != "Room")
                 {
+                    if (hits[i].collider.isTrigger)
+                    {
+                        hits[i].collider.isTrigger = false;
+                    }
                     return true;
                 }
             }
@@ -98,7 +103,15 @@ public class BuildingController : MonoBehaviour
             builderMode = false;
             _spawnItem.transform.position = new Vector2(hitX, hitY);
             _spawnItem.GetComponent<SpriteRenderer>().color = _originalColor;
-            _collider2D.isTrigger = false;
+            if (selectedConstruction.GetComponent<Collider2D>().isTrigger)
+            {
+                _collider2D.isTrigger = true;
+            }
+            else
+            {
+                _collider2D.isTrigger = false;
+            }
+
             BuildingDeskController.CloseBuildingDesk();
             Cursor.visible = true;
             _showedUp = false;

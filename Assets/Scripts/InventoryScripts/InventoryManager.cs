@@ -24,7 +24,6 @@ namespace InventoryScripts
         {
             instance = this;
             _opened = false;
-            _chestController = FindObjectsOfType<ChestController>();
         }
 
         private void Start()
@@ -56,6 +55,7 @@ namespace InventoryScripts
                 {
                     _opened = false;
                     mainInventory.gameObject.SetActive(false);
+                    _chestController = FindObjectsOfType<ChestController>();
                     for (int i = 0; i < _chestController.Length; i++)
                     {
                         if (_chestController[i]._opened)

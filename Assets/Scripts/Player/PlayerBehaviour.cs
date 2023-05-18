@@ -17,17 +17,21 @@ namespace Player
         [Header("Movement Values")] [SerializeField]
         private float moveSpeed;
 
+        [Header("Game Objects")] [SerializeField]
+        private GameObject buildingPanel;
+        
         private void Awake()
         {
             _buildingController = GetComponent<BuildingController>();
             _rigidbody = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
+            
         }
 
         private void Update()
         {
-            if (!_buildingController.builderMode)
+            if (!_buildingController.builderMode && !buildingPanel.gameObject.activeInHierarchy)
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.None;
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;

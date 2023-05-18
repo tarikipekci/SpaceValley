@@ -1,5 +1,6 @@
 using System;
 using InventoryScripts;
+using Player;
 using UnityEngine;
 
 public class ChestController : MonoBehaviour
@@ -12,32 +13,42 @@ public class ChestController : MonoBehaviour
     [SerializeField] private GameObject chestInventory;
     public GameObject mainInventory;
     public InventoryManager inventoryManager;
-    public Transform player;
-    private float distance;
+    public PlayerBehaviour player;
+    public float distance;
     [SerializeField] private float maxRange;
+    public static ChestController instance;
 
     private void Awake()
     {
+        instance = this;
+    }
+
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerBehaviour>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
         _chestAnim = GetComponent<Animator>();
         chestInventory.SetActive(false);
+        mainInventory = inventoryManager.mainInventory;
+        mainInventory.SetActive(false);
     }
 
     private void Update()
     {
-        distance = Math.Abs(Vector3.Distance(player.position, transform.position));
+        distance = Math.Abs(Vector3.Distance(player.transform.position, transform.position));
     }
 
     private void OnMouseOver()
     {
         if (distance <= maxRange)
         {
-             _chestAnim.SetBool(Outline,true);
+            _chestAnim.SetBool(Outline, true);
         }
     }
 
     public void OnMouseExit()
     {
-       _chestAnim.SetBool(Outline,false);
+        _chestAnim.SetBool(Outline, false);
     }
 
     public void OnMouseDown()
@@ -48,7 +59,7 @@ public class ChestController : MonoBehaviour
             _chestAnim.SetTrigger(Opened);
             chestInventory.SetActive(true);
             chestInventory.transform.SetParent(mainInventory.transform);
-            mainInventory.gameObject.SetActive(true);
+            mainInventory.SetActive(true);
             inventoryManager._opened = true;
         }
     }
