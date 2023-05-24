@@ -56,11 +56,11 @@ namespace InventoryScripts
                     _opened = false;
                     mainInventory.gameObject.SetActive(false);
                     _chestController = FindObjectsOfType<ChestController>();
-                    for (int i = 0; i < _chestController.Length; i++)
+                    foreach (var t in _chestController)
                     {
-                        if (_chestController[i]._opened)
+                        if (t._opened)
                         {
-                            _chestController[i].CloseChest();
+                            t.CloseChest();
                         }
                     }
                 }
@@ -69,30 +69,31 @@ namespace InventoryScripts
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int position = map.WorldToCell(mousePosition);
 
-            if (Input.GetMouseButtonDown(1))
+            if (!Input.GetMouseButtonDown(1)) return;
+            InventorySlot slot = inventorySlots[_selectedSlot];
+            InventoryItems itemInSlot = slot.GetComponentInChildren<InventoryItems>();
+            if (itemInSlot.item.actionType == ActionType.eat)
             {
-                InventorySlot slot = inventorySlots[_selectedSlot];
-                InventoryItems itemInSlot = slot.GetComponentInChildren<InventoryItems>();
-                if (itemInSlot.item.actionType == ActionType.eat)
+                switch (itemInSlot.item.tierLevel)
                 {
-                    switch (itemInSlot.item.tierLevel)
-                    {
-                        case TierLevel.one:
-                            itemInSlot.item.UseHealItem(1);
-                            break;
-                        case TierLevel.two:
-                            itemInSlot.item.UseHealItem(2);
-                            break;
+                    case TierLevel.one:
+                        itemInSlot.item.UseHealItem(1);
+                        break;
+                    case TierLevel.two:
+                        itemInSlot.item.UseHealItem(2);
+                        break;
 
-                        case TierLevel.three:
-                            itemInSlot.item.UseHealItem(3);
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                    case TierLevel.three:
+                        itemInSlot.item.UseHealItem(3);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
+            }
 
-                if (itemInSlot.item.actionType == ActionType.harvest)
+            switch (itemInSlot.item.actionType)
+            {
+                case ActionType.harvest:
                 {
                     if (GameManager.instance.tileManager.IsInteractable(position))
                     {
@@ -101,14 +102,17 @@ namespace InventoryScripts
                             GameManager.instance.tileManager.SetInteracted(position);
                         }
                     }
-                }
 
-                if (itemInSlot.item.actionType == ActionType.destroy)
+                    break;
+                }
+                case ActionType.destroy:
                 {
                     if (Mathf.Abs(Vector3.Distance(player.position, mousePosition)) <= 1f)
                     {
                         GameManager.instance.tileManager.BreakTile(position);
                     }
+
+                    break;
                 }
             }
         }
@@ -123,30 +127,24 @@ namespace InventoryScripts
         public bool AddItem(Item item)
         {
             //Check if any slot has the same item with count lower than max stack size
-            for (int i = 0; i < inventorySlots.Length; i++)
+            foreach (var slot in inventorySlots)
             {
-                InventorySlot slot = inventorySlots[i];
-                InventoryItems itemInSlot = slot.GetComponentInChildren<InventoryItems>();
-                if (itemInSlot != null && itemInSlot.item == item &&
-                    itemInSlot.count < itemInSlot.item.maxStackSize &&
-                    itemInSlot.item.stackable)
-                {
-                    itemInSlot.count++;
-                    itemInSlot.RefreshCount();
-                    return true;
-                }
+                var itemInSlot = slot.GetComponentInChildren<InventoryItems>();
+                if (itemInSlot == null || itemInSlot.item != item ||
+                    itemInSlot.count >= itemInSlot.item.maxStackSize ||
+                    !itemInSlot.item.stackable) continue;
+                itemInSlot.count++;
+                itemInSlot.RefreshCount();
+                return true;
             }
 
             //Find any empty slot
-            for (int i = 0; i < inventorySlots.Length; i++)
+            foreach (var slot in inventorySlots)
             {
-                InventorySlot slot = inventorySlots[i];
-                InventoryItems itemInSlot = slot.GetComponentInChildren<InventoryItems>();
-                if (itemInSlot == null)
-                {
-                    SpawnNewItem(item, slot);
-                    return true;
-                }
+                var itemInSlot = slot.GetComponentInChildren<InventoryItems>();
+                if (itemInSlot != null) continue;
+                SpawnNewItem(item, slot);
+                return true;
             }
 
             return false;
@@ -154,35 +152,30 @@ namespace InventoryScripts
 
         void SpawnNewItem(Item item, InventorySlot slot)
         {
-            GameObject newItemGO = Instantiate(inventoryItemPrefab, slot.transform);
-            InventoryItems inventoryItem = newItemGO.GetComponent<InventoryItems>();
+            var newItemGO = Instantiate(inventoryItemPrefab, slot.transform);
+            var inventoryItem = newItemGO.GetComponent<InventoryItems>();
             inventoryItem.InitialiseItem(item);
         }
 
         public Item GetSelectedItem(bool use)
         {
-            InventorySlot slot = inventorySlots[_selectedSlot];
-            InventoryItems itemInSlot = slot.GetComponentInChildren<InventoryItems>();
-            if (itemInSlot != null)
+            var slot = inventorySlots[_selectedSlot];
+            var itemInSlot = slot.GetComponentInChildren<InventoryItems>();
+            if (itemInSlot == null) return null;
+            var item = itemInSlot.item;
+            if (!use || _opened) return item;
+            itemInSlot.count--;
+            if (itemInSlot.count <= 0)
             {
-                Item item = itemInSlot.item;
-                if (use && _opened == false)
-                {
-                    itemInSlot.count--;
-                    if (itemInSlot.count <= 0)
-                    {
-                        Destroy(itemInSlot.gameObject);
-                    }
-                    else
-                    {
-                        itemInSlot.RefreshCount();
-                    }
-                }
-
-                return item;
+                Destroy(itemInSlot.gameObject);
+            }
+            else
+            {
+                itemInSlot.RefreshCount();
             }
 
-            return null;
+            return item;
+
         }
     }
 }

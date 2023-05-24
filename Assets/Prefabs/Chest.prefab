@@ -103,6 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _opened: 0
   chestInventory: {fileID: 6330224689599793104}
+  mainInventory: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  player: {fileID: 0}
+  distance: 0
   maxRange: 1
 --- !u!95 &6330224688465799692
 Animator:
@@ -240,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.50980395, g: 0.6862745, b: 0.8784314, a: 1}
+  m_Color: {r: 0.50980395, g: 0.6862745, b: 0.8784314, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

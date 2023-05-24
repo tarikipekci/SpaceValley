@@ -12,8 +12,7 @@ public class BuildingController : MonoBehaviour
     private float gridSize = 0.32f;
     [Header("Classes")] public static BuildingController instance;
     public BuildingDeskController BuildingDeskController;
-    private Collider2D hitTarget;
-
+    
     private void Awake()
     {
         instance = this;
@@ -23,8 +22,8 @@ public class BuildingController : MonoBehaviour
     {
         if (moveCollider != null)
         {
-            RaycastHit2D[] hits = new RaycastHit2D[10];
-            ContactFilter2D filter = new ContactFilter2D();
+            var hits = new RaycastHit2D[10];
+            var filter = new ContactFilter2D();
 
             var numHits = moveCollider.Cast(direction, filter, hits, distance);
 
@@ -32,10 +31,6 @@ public class BuildingController : MonoBehaviour
             {
                 if (hits[i].collider.enabled && hits[i].collider.tag != "Room")
                 {
-                    if (hits[i].collider.isTrigger)
-                    {
-                        hits[i].collider.isTrigger = false;
-                    }
                     return true;
                 }
             }
@@ -54,14 +49,7 @@ public class BuildingController : MonoBehaviour
 
             CreateBluePrintOfObject(worldPos, hitX, hitY);
 
-            if (_canBuild)
-            {
-                _spawnItem.GetComponent<SpriteRenderer>().color = Color.green;
-            }
-            else
-            {
-                _spawnItem.GetComponent<SpriteRenderer>().color = Color.red;
-            }
+            _spawnItem.GetComponent<SpriteRenderer>().color = _canBuild ? Color.green : Color.red;
 
             IsItAvailableToBuild();
             PlaceObject(hitX, hitY);
@@ -86,35 +74,19 @@ public class BuildingController : MonoBehaviour
 
     private void IsItAvailableToBuild()
     {
-        if (CheckCollisions(_collider2D, _spawnItem.transform.position, 10f))
-        {
-            _canBuild = false;
-        }
-        else
-        {
-            _canBuild = true;
-        }
+        _canBuild = !CheckCollisions(_collider2D, _spawnItem.transform.position, 10f);
     }
 
-    public void PlaceObject(float hitX, float hitY)
+    private void PlaceObject(float hitX, float hitY)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _canBuild)
-        {
-            builderMode = false;
-            _spawnItem.transform.position = new Vector2(hitX, hitY);
-            _spawnItem.GetComponent<SpriteRenderer>().color = _originalColor;
-            if (selectedConstruction.GetComponent<Collider2D>().isTrigger)
-            {
-                _collider2D.isTrigger = true;
-            }
-            else
-            {
-                _collider2D.isTrigger = false;
-            }
+        if (!Input.GetKeyDown(KeyCode.Mouse0) || !_canBuild) return;
+        builderMode = false;
+        _spawnItem.transform.position = new Vector2(hitX, hitY);
+        _spawnItem.GetComponent<SpriteRenderer>().color = _originalColor;
+        _collider2D.isTrigger = selectedConstruction.GetComponent<Collider2D>().isTrigger;
 
-            BuildingDeskController.CloseBuildingDesk();
-            Cursor.visible = true;
-            _showedUp = false;
-        }
+        BuildingDeskController.CloseBuildingDesk();
+        Cursor.visible = true;
+        _showedUp = false;
     }
 }

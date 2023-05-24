@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Red Carpet
   itemDescription: 
   image: {fileID: 21300000, guid: a76a3e032ba2acd4795b4bf9206989c5, type: 3}
-  cost: 80
+  cost: 60
