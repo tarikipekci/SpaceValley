@@ -2,16 +2,13 @@ using UnityEngine;
 
 public class BuildingController : MonoBehaviour
 {
-    [Header("Game Objects")]
-    public GameObject selectedConstruction;
+    [Header("Game Objects")] public GameObject selectedConstruction;
     public GameObject _spawnItem;
-    
-    [Header("Components")]
-    private Collider2D _collider2D;
+
+    [Header("Components")] private Collider2D _collider2D;
     private Color _originalColor;
-    
-    [Header("Variables")]
-    public bool builderMode;
+
+    [Header("Variables")] public bool builderMode;
     private bool _showedUp;
     public bool _canBuild;
     private float gridSize = 0.32f;
@@ -50,7 +47,7 @@ public class BuildingController : MonoBehaviour
 
         return false;
     }
-    
+
     private void Update()
     {
         if (builderMode)
@@ -99,7 +96,6 @@ public class BuildingController : MonoBehaviour
         _spawnItem.transform.position = new Vector2(hitX, hitY);
         _spawnItem.GetComponent<SpriteRenderer>().color = _originalColor;
         _collider2D.isTrigger = selectedConstruction.GetComponent<Collider2D>().isTrigger;
-
         BuildingDeskController.CloseBuildingDesk();
         Cursor.visible = true;
         _showedUp = false;
