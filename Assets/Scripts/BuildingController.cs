@@ -2,17 +2,29 @@ using UnityEngine;
 
 public class BuildingController : MonoBehaviour
 {
-    public bool builderMode;
+    [Header("Game Objects")]
     public GameObject selectedConstruction;
-    private bool _showedUp;
-    private GameObject _spawnItem;
-    private Color _originalColor;
+    public GameObject _spawnItem;
+    
+    [Header("Components")]
     private Collider2D _collider2D;
+    private Color _originalColor;
+    
+    [Header("Variables")]
+    public bool builderMode;
+    private bool _showedUp;
     public bool _canBuild;
     private float gridSize = 0.32f;
+    
     [Header("Classes")] public static BuildingController instance;
     public BuildingDeskController BuildingDeskController;
-    
+    private Camera _camera;
+
+    private void Start()
+    {
+        _camera = Camera.main;
+    }
+
     private void Awake()
     {
         instance = this;
@@ -38,12 +50,12 @@ public class BuildingController : MonoBehaviour
 
         return false;
     }
-
+    
     private void Update()
     {
         if (builderMode)
         {
-            Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 worldPos = _camera.ScreenToWorldPoint(Input.mousePosition);
             var hitX = Mathf.Round(worldPos.x / gridSize) * gridSize;
             var hitY = Mathf.Round(worldPos.y / gridSize) * gridSize;
 
@@ -74,7 +86,10 @@ public class BuildingController : MonoBehaviour
 
     private void IsItAvailableToBuild()
     {
-        _canBuild = !CheckCollisions(_collider2D, _spawnItem.transform.position, 10f);
+        if (selectedConstruction.GetComponent<Collider2D>().isTrigger == false)
+        {
+            _canBuild = !CheckCollisions(_collider2D, _spawnItem.transform.position, 10f);
+        }
     }
 
     private void PlaceObject(float hitX, float hitY)

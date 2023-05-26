@@ -19,6 +19,6 @@ public class WarningMessageController : MonoBehaviour
         warningMessage.text = message;
         var newWarning = Instantiate(text, warningMessageSpot.position, transform.rotation);
         newWarning.transform.SetParent(GameObject.Find("UI Canvas").gameObject.transform);
-        Destroy(newWarning, 2f);
+        Destroy(newWarning, 1f);
     }
 }
