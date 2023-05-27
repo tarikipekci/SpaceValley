@@ -3,14 +3,19 @@ using UnityEngine;
 public class MoveObject : MonoBehaviour
 {
     public bool moverMode;
-    private float gridSize;
+    private float gridSize = 0.32f;
     private Camera _camera;
     private GameObject movingObject;
     private bool _showedUp;
     private Color _originalColor;
-    private Collider2D _collider2D;
     private bool _canBuild;
-    private bool isTrigger;
+    private BuildingDeskController[] _buildingDeskControllers;
+    private bool objectSelected;
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
 
     private bool CheckCollisions(Collider2D moveCollider, Vector2 direction, float distance)
     {
@@ -33,12 +38,6 @@ public class MoveObject : MonoBehaviour
         return false;
     }
 
-    private void Awake()
-    {
-        gridSize = 0.32f;
-        _camera = Camera.main;
-    }
-
     private void Update()
     {
         if (moverMode)
@@ -50,33 +49,38 @@ public class MoveObject : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),
+                    var hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition),
                         Vector2.zero);
 
                     if (hit.collider != null)
                     {
+                        objectSelected = true;
                         movingObject = hit.collider.gameObject;
-                        isTrigger = hit.collider;
-                        _collider2D = hit.collider;
+                        Cursor.visible = false;
                     }
                 }
 
-                CreateBlueprintOfMovingObject(hitX, hitY);
-                IsItAvailableToReplace();
+                if (objectSelected)
+                {
+                    CreateBlueprintOfMovingObject(hitX, hitY);
+                    if (_showedUp)
+                    {
+                        IsItAvailableToReplace();
+                    }
+                }
             }
         }
     }
 
     private void CreateBlueprintOfMovingObject(float hitX, float hitY)
     {
-        Cursor.visible = false;
         if (_showedUp == false)
         {
             _showedUp = true;
         }
 
-        _collider2D.isTrigger = true;
-        movingObject.transform.position = new Vector2(hitX, hitY);
+        movingObject.GetComponent<Collider2D>().isTrigger = true;
+        movingObject.transform.position = new Vector3(hitX, hitY, 0f);
         movingObject.GetComponent<SpriteRenderer>().color = _canBuild ? Color.green : Color.red;
         ReplaceTheSelectedObject(hitX, hitY);
     }
@@ -88,7 +92,7 @@ public class MoveObject : MonoBehaviour
 
     private void IsItAvailableToReplace()
     {
-        _canBuild = !CheckCollisions(_collider2D, movingObject.transform.position, 10f);
+        _canBuild = !CheckCollisions(movingObject.GetComponent<Collider2D>(), movingObject.transform.position, 10f);
     }
 
     private void ReplaceTheSelectedObject(float hitX, float hitY)
@@ -100,11 +104,21 @@ public class MoveObject : MonoBehaviour
                 moverMode = false;
                 movingObject.transform.position = new Vector2(hitX, hitY);
                 movingObject.GetComponent<SpriteRenderer>().color = Color.white;
-                _collider2D.isTrigger = isTrigger;
-                //_buildingDeskController.CloseBuildingDesk();
+                movingObject.GetComponent<Collider2D>().isTrigger = false;
+                _buildingDeskControllers = FindObjectsOfType<BuildingDeskController>();
+                foreach (var t in _buildingDeskControllers)
+                {
+                    if (t._opened)
+                    {
+                        t.CloseBuildingDesk();
+                    }
+                }
+
                 Cursor.visible = true;
                 _showedUp = false;
                 movingObject = null;
+                _canBuild = false;
+                objectSelected = false;
             }
         }
     }

@@ -8,6 +8,7 @@ public class BuildingDeskPanelController : MonoBehaviour
     [SerializeField] private BuildingController _buildingController;
     [SerializeField] private GameObject buildingPanel;
     [SerializeField] private BalanceBehaviour _balanceBehaviour;
+    private BuildingDeskController[] _buildingDeskControllers;
 
     private void Start()
     {
@@ -16,6 +17,21 @@ public class BuildingDeskPanelController : MonoBehaviour
         _balanceBehaviour = FindObjectOfType<BalanceBehaviour>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            buildingPanel.SetActive(false);
+            _buildingDeskControllers = FindObjectsOfType<BuildingDeskController>();
+            foreach (var t in _buildingDeskControllers)
+            {
+                if (t._opened)
+                {
+                    t.CloseBuildingDesk();
+                }
+            }
+        }
+    }
 
     public void OnClick()
     {
@@ -28,7 +44,7 @@ public class BuildingDeskPanelController : MonoBehaviour
         }
         else
         {
-           WarningMessageController.instance.PrintMessage("Insufficient balance");
+            WarningMessageController.instance.PrintMessage("Insufficient balance");
         }
     }
 }
