@@ -1,4 +1,5 @@
 using System;
+using Player;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -72,7 +73,7 @@ namespace InventoryScripts
             if (!Input.GetMouseButtonDown(1)) return;
             InventorySlot slot = inventorySlots[_selectedSlot];
             InventoryItems itemInSlot = slot.GetComponentInChildren<InventoryItems>();
-            if (itemInSlot.item.actionType == ActionType.eat)
+            if (itemInSlot.item.actionType == ActionType.eat && PlayerHealthBehaviour.instance.currentHealth < PlayerHealthBehaviour.instance.maxHealth)
             {
                 switch (itemInSlot.item.tierLevel)
                 {
@@ -150,7 +151,7 @@ namespace InventoryScripts
             return false;
         }
 
-        void SpawnNewItem(Item item, InventorySlot slot)
+        private void SpawnNewItem(Item item, InventorySlot slot)
         {
             var newItemGO = Instantiate(inventoryItemPrefab, slot.transform);
             var inventoryItem = newItemGO.GetComponent<InventoryItems>();
